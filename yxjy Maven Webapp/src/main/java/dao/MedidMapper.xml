@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.MedidMapper">
+
+	<select id="find" resultType="pojo.Medid" parameterType="int">
+		select
+		mid,type,pid,url,pname from
+		db_medid where type=0 and pid=#{pid}
+	</select>
+
+
+	<select id="get" resultType="pojo.Medid" parameterType="int">
+		select
+		mid,type,pid,url,pname from
+		db_medid where type=0 and mid=#{mid}
+	</select>
+
+	<delete id="delete" parameterType="int">
+		delete from db_medid where
+		mid=#{mid}
+	</delete>
+
+	<insert id="insertVideo" parameterType="pojo.Medid">
+		insert into db_medid
+		(pname,url,mdate,type) values(
+		#{pname},
+		#{url},
+		#{mdate},
+		#{type}
+		)
+	</insert>
+
+
+
+	<insert id="insert" parameterType="pojo.Medid">
+		insert into db_medid
+		(type,pid,url,pname) values(
+		#{type},
+		#{pid},
+		#{url},
+		#{pname}
+		)
+
+	</insert>
+
+
+
+	<select id="findByVideo" resultType="pojo.Medid">
+		select
+		mid,type,url,pname,mdate from
+		db_medid where type=1
+	</select>
+</mapper>

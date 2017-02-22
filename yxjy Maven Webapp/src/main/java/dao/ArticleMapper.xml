@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.ArticleMapper">
+
+	<select id="find" resultType="pojo.Article">
+		select aid,atitle,acontent,pid,type
+		from db_article
+	</select>
+
+	<select id="get" resultType="pojo.Article" parameterType="int">
+		select
+		aid,atitle,acontent,pid,pname,adate,author,type,img from db_article
+		where
+		aid=#{id}
+	</select>
+	<select id="getJj" resultType="pojo.Article">
+		select
+		aid,acontent from
+		db_article
+		where type=1 limit 0,1
+	</select>
+
+	<update id="updateJj" parameterType="map">
+		update db_article set
+		acontent=#{info},img=#{img} where type=1
+	</update>
+
+
+	<select id="getArticleByPid" parameterType="int" resultType="pojo.Article">
+		select aid,atitle,pid,adate,author,pname from db_article where
+		pid=#{pid} order by adate DESC
+	</select>
+
+	<insert id="insert" parameterType="pojo.Article">
+		insert into db_article
+		(atitle,acontent,pid,adate,author,pname,img,type) values(
+		#{atitle},
+		#{acontent},
+		#{pid},
+		#{adate},
+		#{author},
+		#{pname},
+		#{img},
+		#{type}
+		)
+	</insert>
+
+	<update id="update" parameterType="pojo.Article">
+		update db_article set
+		atitle=#{atitle},acontent=#{acontent},pid=#{pid},img=#{img},author=#{author},pname=#{pname}
+		where aid=#{aid}
+
+	</update>
+
+	<delete id="delete" parameterType="int">
+		delete from db_article where
+		aid=#{aid}
+	</delete>
+
+	<select id="getArticleByKp" resultType="pojo.Article">
+		select
+		aid,atitle,acontent,adate,author from db_article where type=2
+	</select>
+
+	<insert id="insertJj" parameterType="pojo.Article">
+		insert into db_article
+		(acontent,type,img) values(
+		#{acontent},
+		#{type},
+		#{img}
+		)
+
+	</insert>
+
+	<select id="findByType" resultType="pojo.Article" parameterType="int">
+		SELECT
+		aid,atitle,LEFT(acontent,140) AS acontent,adate,author FROM
+		db_article WHERE
+		TYPE=#{type}
+	</select>
+
+</mapper>

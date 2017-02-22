@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.ProductMapper">
+
+
+
+	<select id="find" resultType="pojo.Product">
+		select
+		pid,pname,pimg,pdesc,ppay,isOk from db_product
+	</select>
+
+
+	<select id="get" resultType="pojo.Product" parameterType="int">
+		select
+		pid,pname,pimg,pdesc,ppay,isOk from db_product where pid=#{pid}
+	</select>
+
+	<delete id="delete" parameterType="int">
+		delete from db_product where
+		pid=#{pid}
+	</delete>
+
+	<insert id="insert" parameterType="pojo.Product">
+		insert into db_product
+		(pname,pimg,pdesc,isOk,ppay) values(
+		#{pname},
+		#{pimg},
+		#{pdesc},
+		#{isOk},
+		#{ppay}
+		)
+	</insert>
+
+	<update id="update" parameterType="pojo.Product">
+		update db_product set pname=#{pname},
+		<if test="#{pimg !=null and pimg!=''}">pimg=#{pimg},</if>
+		pdesc=#{pdesc},ppay=#{ppay} where pid=#{pid}
+	</update>
+</mapper>
