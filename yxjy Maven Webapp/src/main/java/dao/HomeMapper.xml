@@ -3,6 +3,23 @@
 <mapper namespace="dao.HomeMapper">
 
 	<select id="getHome" resultType="pojo.Home" parameterType="int">
-		select hid,title,content from db_home where type=#{type}
+		select hid,title,content,type from db_home where type=#{type}
 	</select>
+	<delete id="deleteImg" parameterType="int">
+		delete from db_home where
+		hid=#{hid}
+	</delete>
+	<select id="getById" parameterType="int" resultType="pojo.Home">
+		select *
+		from db_home where hid=#{hid} limit 1
+	</select>
+
+	<insert id="insert" parameterType="pojo.Home">
+		insert into db_home
+		(title,content,type) values(
+		#{title},
+		#{content},
+		#{type}
+		)
+	</insert>
 </mapper>

@@ -5,7 +5,7 @@ public class Home {
 	private Integer hid;
 	private String title;
 	private String content;
-	private int type;  //type =0  公告   =1 小图片  =3 大图
+	private int type;  //type =0  公告   =1 小图片  =2 大图
 	public Integer getHid() {
 		return hid;
 	}

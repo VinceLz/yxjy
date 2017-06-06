@@ -19,5 +19,9 @@ public interface MedidService {
 	void deletevideo();
 
 	void insertVideo(Medid medid);
+
+	List<Medid> getByPid(int pid);
+
+	void deleteByPid(int pid);
 	
 }

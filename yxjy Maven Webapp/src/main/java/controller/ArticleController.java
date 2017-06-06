@@ -72,14 +72,15 @@ public class ArticleController {
 	// 发布
 	@RequestMapping("/article/add")
 	public String send2(Article article, String product) {
+		System.out.println(article);
 		String[] split = null;
 		if (article.getType() == 0) {
 			split = product.split(",");
 			article.setPid(Integer.parseInt(split[0]));
 			article.setPname(split[1]);
-			article.setAdate(DateUtil.getSqlDate());
-		}
 
+		}
+		article.setAdate(DateUtil.getSqlDate());
 		// 文章图片
 		List<String> imageSrc = util.ImgUtil.getImageSrc(article.getAcontent());
 		String listToString = StringUtil.listToString(imageSrc, ",");
@@ -112,7 +113,6 @@ public class ArticleController {
 		Article find = articleService.get(aid);
 
 		if (find.getType() == 0) {
-			System.out.println("进来了");
 			mod.addAttribute("list", productService.find());
 		}
 		mod.addAttribute("article", find);
@@ -164,7 +164,8 @@ public class ArticleController {
 
 	// 更新简介内容
 	@RequestMapping("/article/updateJj")
-	public String updateJj(String info, Model mod, HttpServletRequest request) {
+	public String updateJj(String info, Model mod, HttpServletRequest request,
+			String tx1, String tx2, String tx3) {
 		// 旧的文章
 		Article find = articleService.getJj();
 		if (find == null) {
@@ -175,6 +176,9 @@ public class ArticleController {
 			String img = StringUtil.listToString(imageSrc, ",");
 			article.setImg(img);
 			article.setType(1);
+			article.setTx1(tx1);
+			article.setTx2(tx2);
+			article.setTx3(tx3);
 			articleService.insertJj(article);
 			return "/article/getJj.action";
 		}
@@ -186,10 +190,14 @@ public class ArticleController {
 		Map map = new HashMap<String, String>();
 		map.put("img", listToString);
 		map.put("info", info);
-
+		map.put("tx1", tx1);
+		map.put("tx2", tx2);
+		map.put("tx3", tx3);
 		articleService.updateJj(map);
 		find.setAcontent(info);
-		System.out.println(request);
+		find.setTx1(tx1);
+		find.setTx2(tx2);
+		find.setTx3(tx3);
 		// 删除以前的图片
 		final String realPath = request.getSession().getServletContext()
 				.getRealPath("");

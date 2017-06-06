@@ -9,10 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-<title>H+ 后台主题UI框架 - 基本表单</title>
-<meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
-<meta name="description"
-	content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+<title>洋县嘉园</title>
 
 <link rel="shortcut icon" href="favicon.ico">
 <link
@@ -37,16 +34,18 @@
 			<div class="col-sm-12">
 				<div class="ibox float-e-margins">
 					<div class="ibox-title">
-						<h5>发布新文章</h5>
+						<h5>发布</h5>
 					</div>
 					<div class="ibox-content">
-						<form method="post" class="form-horizontal" enctype="multipart/form-data"
+						<form method="post" class="form-horizontal"
+							enctype="multipart/form-data"
 							action="<%=application.getContextPath()%>/product/update.action">
 							<div class="form-group">
 								<label class="col-sm-1 control-label">产品名</label>
 
 								<div class="col-sm-10">
-									<input type="text" class="form-control" value="${item.pname}" name="pname">
+									<input type="text" class="form-control" value="${item.pname}"
+										name="pname">
 								</div>
 							</div>
 							<div class="hr-line-dashed"></div>
@@ -55,30 +54,45 @@
 								<label class="col-sm-1 control-label">产品说明</label>
 
 								<div class="col-sm-10">
-									<input type="text"  value="${item.pdesc}"
-										class="form-control" name="pdesc">
+									<input type="text" value="${item.pdesc}" class="form-control"
+										name="pdesc">
 								</div>
 							</div>
 							<div class="hr-line-dashed"></div>
 							<input type="hidden" name="pid" value="${item.pid}">
-							
+
 							<div class="form-group">
-								<label class="col-sm-1 control-label">购买链接</label>
+								<label class="col-sm-1 control-label">购买链接(淘宝商城)</label>
 
 								<div class="col-sm-10">
-									<input type="text"  value="${item.ppay}"
-										class="form-control" name="ppay">
+									<input type="text" value="${item.ppay}" class="form-control"
+										name="ppay">
 								</div>
 							</div>
 							<div class="hr-line-dashed"></div>
-							
-							
+		<div class="form-group">
+								<label class="col-sm-1 control-label">购买链接(融E购)</label>
+
+								<div class="col-sm-10">
+									<input type="text" value="${item.ppay1}" class="form-control"
+										name="ppay1">
+								</div>
+							</div>
+							<div class="hr-line-dashed"></div>
+
+							<div class="form-group">
+								<label class="col-sm-1 control-label">现有图片</label>
+
+								<div class="col-sm-10">
+									<img alt="" width="300" height="300" src="${item.pimg}">
+								</div>
+							</div>
+							<div class="hr-line-dashed"></div>
 							<div class="form-group">
 								<label class="col-sm-1 control-label">产品图片</label>
 
 								<div class="col-sm-10">
-									<input type="file"  value=""
-										class="form-control" name="file">
+									<input type="file" value="" class="form-control" name="file">
 								</div>
 							</div>
 							<div class="hr-line-dashed"></div>
@@ -100,7 +114,7 @@
 		src="<%=application.getContextPath()%>/js/jquery.min.js?v=2.1.4"></script>
 	<script
 		src="<%=application.getContextPath()%>/js/bootstrap.min.js?v=3.3.6"></script>
-	
+
 </body>
 
 </html>

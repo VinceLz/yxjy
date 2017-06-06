@@ -26,7 +26,11 @@ public class ImgUtil {
 			quote = m.group(1);
 			src = (quote == null || quote.trim().length() == 0) ? m.group(2)
 					.split("\\s+")[0] : m.group(2);
-			imageSrcList.add(src);
+			for(int i=0;i<3;i++){
+				src=src.substring(src.indexOf("/")+1);
+			}
+			System.out.println(src);
+			imageSrcList.add("/"+src);
 		}
 		return imageSrcList;
 	}
@@ -44,6 +48,7 @@ public class ImgUtil {
 
 		for (String ar : array) {
 			File file = new File(realPath + ar);
+			System.out.println(file.getAbsolutePath()+"-----------------");
 			if (file.exists()) {
 				System.out.println("存在的，删除了");
 				file.delete();
@@ -51,10 +56,11 @@ public class ImgUtil {
 		}
 	}
 
-	public static  void deleteImg(String img, String path) {
+	public static void deleteImg(String img, String path) {
 		String[] split = img.split(",");
 		for (String str : split) {
 			File file = new File(path + str);
+			System.out.println(file.getAbsolutePath());
 			if (file.exists()) {
 				file.delete();
 			}

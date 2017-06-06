@@ -9,10 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-<title>H+ 后台主题UI框架 - 数据表格</title>
-<meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
-<meta name="description"
-	content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+<title>洋县嘉园</title>
 
 <link rel="shortcut icon" href="favicon.ico">
 <link
@@ -66,7 +63,10 @@
 										<td>${item.adate}</td>
 										<td class="center"><a
 											href="<%=application.getContextPath()%>/article/updatePre.action?aid=${item.aid}"
-											class="btn btn-primary btn-sm pull-left">查看</a><a
+											class="btn btn-primary btn-sm pull-left">修改</a> <a
+											style="margin-left:35%" target="_blank"
+											href="http://sxyxjy.cn/#/article?aid=${item.aid}"
+											class="btn btn-primary btn-sm pull-left">查看</a> <a
 											href="<%=application.getContextPath()%>/article/delete.action?aid=${item.aid}&pid=${item.pid}"
 											class="btn btn-danger btn-sm pull-right deleteA">删除</a></td>
 									</tr>

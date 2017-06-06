@@ -20,15 +20,22 @@
 	<mvc:annotation-driven>
 		<mvc:message-converters register-defaults="true">
 			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
-				<property name="supportedMediaTypes" value="text/html;charset=UTF-8" />
+				<property name="supportedMediaTypes" value="application/json;charset=UTF-8" />
 			</bean>
 		</mvc:message-converters>
 
 
 	</mvc:annotation-driven>
-	<mvc:default-servlet-handler/>
+	<mvc:default-servlet-handler />
 
-	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**/*.action" />
+			<bean class="exception.AllException"></bean>
+		</mvc:interceptor>
+
+	</mvc:interceptors>
+
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass"
@@ -37,6 +44,6 @@
 		<property name="suffix" value="" />
 	</bean>
 
-
+	
 
 </beans>

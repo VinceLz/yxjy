@@ -9,10 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-<title>H+ 后台主题UI框架 - 基本表单</title>
-<meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
-<meta name="description"
-	content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
+<title>洋县嘉园</title>
 
 <link rel="shortcut icon" href="favicon.ico">
 <link
@@ -33,16 +30,11 @@
 
 <body class="gray-bg">
 
-	<!-- 配置文件 -->
-	<script type="text/javascript"
-		src="<%=application.getContextPath()%>/ueditor/ueditor.config.js"></script>
-	<!-- 编辑器源码文件 -->
-	<script type="text/javascript"
-		src="<%=application.getContextPath()%>/ueditor/ueditor.all.js"></script>
-	<!-- 实例化编辑器 -->
-	<script type="text/javascript">
-		var ue = UE.getEditor('container');
-	</script>
+
+	<link rel="stylesheet" href="<%=application.getContextPath()%>/ueditor/themes/default/css/umeditor.css">
+<!-- 引用jquery -->
+<script src="<%=application.getContextPath()%>/ueditor/third-party/jquery.min.js"></script>
+
 
 
 	<div class="wrapper wrapper-content animated fadeInRight">
@@ -91,8 +83,7 @@
 		</div>
 	</div>
 	<!-- 全局js -->
-	<script
-		src="<%=application.getContextPath()%>/js/jquery.min.js?v=2.1.4"></script>
+	
 	<script
 		src="<%=application.getContextPath()%>/js/bootstrap.min.js?v=3.3.6"></script>
 	

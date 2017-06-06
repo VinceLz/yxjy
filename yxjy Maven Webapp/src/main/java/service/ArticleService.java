@@ -18,4 +18,6 @@ public interface ArticleService {
 	public void delete(int aid);
 	public List<Article> getArticleByKp();
 	public void insertJj(Article article);
+	List<Article> getClassByPid(int pid);
+	void deleteByPid(int pid);
 }

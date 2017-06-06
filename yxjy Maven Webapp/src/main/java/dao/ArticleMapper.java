@@ -16,7 +16,11 @@ public interface ArticleMapper {
 	public void update(Article article);
 	public void delete(int aid);
 	public List<Article> getArticleByKp();
+	
+	
 	public void insertJj(Article article);
 	
 	List<Article> findByType(int i);
+	public List<Article> getClassByPid(int pid);
+	public void deleteByPid(int pid);
 } 

@@ -20,4 +20,8 @@ public interface MedidMapper {
 
 	void insertVideo(Medid medid);
 
+	List<Medid> getByPid(int pid);
+
+	void deleteByPid(int pid);
+
 }

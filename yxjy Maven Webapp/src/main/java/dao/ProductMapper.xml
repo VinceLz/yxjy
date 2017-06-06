@@ -6,13 +6,13 @@
 
 	<select id="find" resultType="pojo.Product">
 		select
-		pid,pname,pimg,pdesc,ppay,isOk from db_product
+		pid,pname,pimg,pdesc,ppay,ppay1,isOk from db_product
 	</select>
 
 
 	<select id="get" resultType="pojo.Product" parameterType="int">
 		select
-		pid,pname,pimg,pdesc,ppay,isOk from db_product where pid=#{pid}
+		pid,pname,pimg,pdesc,ppay,isOk,ppay1 from db_product where pid=#{pid}
 	</select>
 
 	<delete id="delete" parameterType="int">
@@ -22,18 +22,19 @@
 
 	<insert id="insert" parameterType="pojo.Product">
 		insert into db_product
-		(pname,pimg,pdesc,isOk,ppay) values(
+		(pname,pimg,pdesc,isOk,ppay,ppay1) values(
 		#{pname},
 		#{pimg},
 		#{pdesc},
 		#{isOk},
-		#{ppay}
+		#{ppay},
+		#{ppay1}
 		)
 	</insert>
 
 	<update id="update" parameterType="pojo.Product">
 		update db_product set pname=#{pname},
-		<if test="#{pimg !=null and pimg!=''}">pimg=#{pimg},</if>
-		pdesc=#{pdesc},ppay=#{ppay} where pid=#{pid}
+		<if test="pimg !=null and pimg!=''">pimg=#{pimg},</if>
+		pdesc=#{pdesc},ppay=#{ppay},ppay1=#{ppay1} where pid=#{pid}
 	</update>
 </mapper>

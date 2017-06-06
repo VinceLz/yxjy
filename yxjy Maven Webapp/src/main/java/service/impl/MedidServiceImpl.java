@@ -52,4 +52,14 @@ public class MedidServiceImpl implements MedidService {
 	public void insertVideo(Medid medid) {
 		medidMapper.insertVideo(medid);
 	}
+
+	@Override
+	public List<Medid> getByPid(int pid) {
+		return medidMapper.getByPid(pid);
+	}
+
+	@Override
+	public void deleteByPid(int pid) {
+		medidMapper.deleteByPid(pid);
+	}
 }

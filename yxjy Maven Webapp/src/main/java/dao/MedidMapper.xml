@@ -50,4 +50,15 @@
 		mid,type,url,pname,mdate from
 		db_medid where type=1
 	</select>
+
+
+	<select id="getByPid" parameterType="int" resultType="pojo.Medid">
+		select
+		mid,type,pid,url,pname from db_medid where type=0 and pid=#{pid}
+
+	</select>
+	
+	<delete id="deleteByPid" parameterType="int">
+		delete from db_medid where pid=#{pid}
+	</delete>
 </mapper>

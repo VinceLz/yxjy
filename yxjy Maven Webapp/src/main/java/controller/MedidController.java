@@ -23,7 +23,7 @@ import util.ImgUtil;
 
 @Controller
 public class MedidController {
-
+	public static int pid = 9999;// 基地图片pid
 	@Resource
 	private MedidService medidService;
 
@@ -49,14 +49,16 @@ public class MedidController {
 		final String img = medid.getUrl();
 		final String realPath = request.getSession().getServletContext()
 				.getRealPath("");
-		new Thread(new Runnable() {
+		if (img != null && !img.isEmpty()) {
+			new Thread(new Runnable() {
 
-			@Override
-			public void run() {
-				// 删除本地图片
-				ImgUtil.deleteImg(img, realPath);
-			}
-		}).start();
+				@Override
+				public void run() {
+					// 删除本地图片
+					ImgUtil.deleteImg(img, realPath);
+				}
+			}).start();
+		}
 		String str = new String(medid.getPname().getBytes("utf-8"),
 				"iso-8859-1");
 
@@ -121,7 +123,6 @@ public class MedidController {
 		return "jsp/mp4_table_data_tables.jsp";
 	}
 
-	
 	@RequestMapping("/medid/addvideo")
 	public String getMp4(Medid medid) {
 		medid.setMdate(DateUtil.getSqlDate());
@@ -130,12 +131,10 @@ public class MedidController {
 		return "medid/video.action";
 	}
 
-	
-	
-	
 	@RequestMapping("/medid/deletevideo")
 	public String getMp5(Model model, int mid) {
 		medidService.delete(mid);
 		return "medid/video.action";
 	}
+
 }

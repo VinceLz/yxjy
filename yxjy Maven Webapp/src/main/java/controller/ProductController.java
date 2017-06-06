@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import pojo.Article;
+import pojo.Medid;
 import pojo.Product;
+import service.ArticleService;
+import service.MedidService;
 import service.ProductService;
 import util.ImgUtil;
 
@@ -23,6 +26,11 @@ public class ProductController {
 
 	@Resource
 	private ProductService productService;
+	@Resource
+	private MedidService medidService;
+
+	@Resource
+	private ArticleService articleService;
 
 	// 发布跳转
 	@RequestMapping("/product/getProduct")
@@ -89,12 +97,14 @@ public class ProductController {
 			}
 			product.setPimg("/img/" + newFileName);
 			productService.update(product);
-			new Thread(new Runnable() {
-				@Override
-				public void run() {
-					ImgUtil.deleteImg(pimg, path);
-				}
-			}).start();
+			if (pimg != null && !pimg.isEmpty()) {
+				new Thread(new Runnable() {
+					@Override
+					public void run() {
+						ImgUtil.deleteImg(pimg, path);
+					}
+				}).start();
+			}
 		}
 		return "product/get.action";
 	}
@@ -128,6 +138,9 @@ public class ProductController {
 			product.setPimg("/img/" + newFileName);
 			product.setIsOk(1);
 			productService.insert(product);
+		} else {
+			product.setIsOk(1);
+			productService.insert(product);
 		}
 		return "product/get.action";
 	}
@@ -136,18 +149,56 @@ public class ProductController {
 	// Todo 对于删除的产品,需要把产品下的文章 图片都需要删除
 	@RequestMapping("/product/delete")
 	public String product2(Model mod, int pid, HttpServletRequest request) {
-		Product product = productService.get(pid);
-		productService.delete(pid);
-		// 启动新线程删除
+		// 需要删除图片和文章
 		final String realPath = request.getSession().getServletContext()
 				.getRealPath("");
-		final String pimg = product.getPimg();
+		final List<Medid> find = medidService.find(pid);
+		// 需要遍历find进行删除
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				ImgUtil.deleteImg(pimg, realPath);
+				for (Medid m : find) {
+					String img = m.getUrl();
+					System.out.println(img+"-----");
+					if (img != null && !img.isEmpty()) {
+						ImgUtil.deleteImg(img, realPath);
+					}
+				}
 			}
 		}).start();
+		medidService.deleteByPid(pid);
+
+		// 开始删除文章
+		final List<Article> articleByPid = articleService.getArticleByPid(pid);
+
+		new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				for (Article ar : articleByPid) {
+					String img = ar.getImg();
+					System.out.println(img+"-----");
+					if (img != null && !img.isEmpty()) {
+						ImgUtil.deleteImg(img, realPath);
+					}
+				}
+			}
+		}).start();
+		//删除本地文章
+		articleService.deleteByPid(pid);
+		Product product = productService.get(pid);
+		productService.delete(pid);
+		// 启动新线程删除
+		final String pimg = product.getPimg();
+		if(pimg!=null&&!pimg.isEmpty()){
+			new Thread(new Runnable() {
+				@Override
+				public void run() {
+					ImgUtil.deleteImg(pimg, realPath);
+				}
+			}).start();
+		}
+		
 
 		return "product/get.action";
 	}

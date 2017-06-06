@@ -10,7 +10,7 @@
     <!--360浏览器优先以webkit内核解析-->
 
 
-    <title>H+ 后台主题UI框架 - 主页示例</title>
+    <title>洋县嘉园</title>
 
     <link rel="shortcut icon" href="favicon.ico"> <link href="<%=application.getContextPath()%>/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
     <link href="<%=application.getContextPath()%>/css/style.css?v=4.1.0" rel="stylesheet">

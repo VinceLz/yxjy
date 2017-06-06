@@ -11,6 +11,43 @@ public class Article {
 	private String author;
 	private String pname;
 	
+	private String desc;
+	
+	private String tx1;
+	private String tx2;
+	private String tx3;
+	
+	public String getTx1() {
+		return tx1;
+	}
+
+	public void setTx1(String tx1) {
+		this.tx1 = tx1;
+	}
+
+	public String getTx2() {
+		return tx2;
+	}
+
+	public void setTx2(String tx2) {
+		this.tx2 = tx2;
+	}
+
+	public String getTx3() {
+		return tx3;
+	}
+
+	public void setTx3(String tx3) {
+		this.tx3 = tx3;
+	}
+
+	public String getDesc() {
+		return desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
 
 	public String getPname() {
 		return pname;
@@ -89,7 +126,9 @@ public class Article {
 		return "Article [aid=" + aid + ", atitle=" + atitle + ", acontent="
 				+ acontent + ", pid=" + pid + ", type=" + type + ", img=" + img
 				+ ", adate=" + adate + ", author=" + author + ", pname="
-				+ pname + "]";
+				+ pname + ", desc=" + desc + "]";
 	}
+
+	
 
 }

@@ -7,7 +7,14 @@ public class Product {
 	private String pdesc;
 	private int isOk;
 	private String ppay;
+	private String ppay1;
 	
+	public String getPpay1() {
+		return ppay1;
+	}
+	public void setPpay1(String ppay1) {
+		this.ppay1 = ppay1;
+	}
 	public Integer getPid() {
 		return pid;
 	}

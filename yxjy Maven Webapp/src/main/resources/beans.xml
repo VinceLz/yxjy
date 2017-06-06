@@ -31,12 +31,7 @@ http://www.springframework.org/schema/mvc ">
         <property name="defaultEncoding" value="UTF-8" />
     </bean>
 
-
-
-
-
-
-
+<bean id="exception" class="exception.ExceptionByAll"></bean>
     <!-- 3.数据源DataSource -->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="driverClass" value="${jdbc.driverClassName}" />

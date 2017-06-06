@@ -20,4 +20,19 @@ public class HomeServiceImpl implements HomeSerice {
 		return homeMapper.getHome(i);
 	}
 
+	@Override
+	public void deleteImg(int hid) {
+		homeMapper.deleteImg(hid);
+	}
+
+	@Override
+	public Home getById(int hid) {
+		return homeMapper.getById(hid);
+	}
+
+	@Override
+	public void insert(Home product) {
+		homeMapper.insert(product);
+	}
+
 }

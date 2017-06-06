@@ -25,7 +25,7 @@ jQuery(function() {
 	fileCount = 0,
 
 	// 添加的文件总大小
-	fileSize = 0,
+	fileSize = 102400000000,
 
 	// 优化retina, 在retina下这个值是2
 	ratio = window.devicePixelRatio || 1,
@@ -83,8 +83,8 @@ jQuery(function() {
 		// server: 'http://webuploader.duapp.com/server/fileupload.php',
 		server : httpserver,
 		fileNumLimit : 300,
-		fileSizeLimit : 5 * 1024 * 1024, // 200 M
-		fileSingleSizeLimit : 1 * 1024 * 1024
+		fileSizeLimit : 102400000000, // 200 M
+		fileSingleSizeLimit : 102400000000
 	// 50 M
 	});
 

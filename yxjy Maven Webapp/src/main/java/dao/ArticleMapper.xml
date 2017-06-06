@@ -3,37 +3,39 @@
 <mapper namespace="dao.ArticleMapper">
 
 	<select id="find" resultType="pojo.Article">
-		select aid,atitle,acontent,pid,type
-		from db_article
+		select
+		aid,atitle,acontent,pid,type,`desc`,tx1,tx2,tx3
+		from db_article order by adate DESC
 	</select>
 
 	<select id="get" resultType="pojo.Article" parameterType="int">
 		select
-		aid,atitle,acontent,pid,pname,adate,author,type,img from db_article
+		aid,atitle,acontent,pid,pname,adate,author,type,img,`desc`,tx1,tx2,tx3 from
+		db_article
 		where
 		aid=#{id}
 	</select>
 	<select id="getJj" resultType="pojo.Article">
 		select
-		aid,acontent from
+		aid,acontent,tx1,tx2,tx3 from
 		db_article
 		where type=1 limit 0,1
 	</select>
 
 	<update id="updateJj" parameterType="map">
 		update db_article set
-		acontent=#{info},img=#{img} where type=1
+		acontent=#{info},img=#{img},tx1=#{tx1},tx2=#{tx2},tx3=#{tx3} where type=1
 	</update>
 
 
 	<select id="getArticleByPid" parameterType="int" resultType="pojo.Article">
-		select aid,atitle,pid,adate,author,pname from db_article where
+		select aid,atitle,pid,adate,author,pname,img,type from db_article where
 		pid=#{pid} order by adate DESC
 	</select>
 
 	<insert id="insert" parameterType="pojo.Article">
 		insert into db_article
-		(atitle,acontent,pid,adate,author,pname,img,type) values(
+		(atitle,acontent,pid,adate,author,pname,img,`type`,`desc`) values(
 		#{atitle},
 		#{acontent},
 		#{pid},
@@ -41,13 +43,14 @@
 		#{author},
 		#{pname},
 		#{img},
-		#{type}
+		#{type},
+		#{desc}
 		)
 	</insert>
 
 	<update id="update" parameterType="pojo.Article">
 		update db_article set
-		atitle=#{atitle},acontent=#{acontent},pid=#{pid},img=#{img},author=#{author},pname=#{pname}
+		atitle=#{atitle},acontent=#{acontent},pid=#{pid},img=#{img},author=#{author},pname=#{pname},`desc`=#{desc}
 		where aid=#{aid}
 
 	</update>
@@ -59,24 +62,42 @@
 
 	<select id="getArticleByKp" resultType="pojo.Article">
 		select
-		aid,atitle,acontent,adate,author from db_article where type=2
+		aid,atitle,acontent,adate,author,`desc` from db_article where type=2 order by adate DESC
 	</select>
 
 	<insert id="insertJj" parameterType="pojo.Article">
 		insert into db_article
-		(acontent,type,img) values(
+		(acontent,type,img,tx1,tx2,tx3) values(
 		#{acontent},
 		#{type},
-		#{img}
+		#{img},
+		#{tx1},
+		#{tx2},
+		#{tx3}
 		)
 
 	</insert>
 
 	<select id="findByType" resultType="pojo.Article" parameterType="int">
 		SELECT
-		aid,atitle,LEFT(acontent,140) AS acontent,adate,author FROM
+		aid,atitle,`desc`,adate,author FROM
 		db_article WHERE
-		TYPE=#{type}
+		TYPE=#{type} ORDER BY adate ASC
 	</select>
+
+	<select id="getClassByPid" resultType="pojo.Article"
+		parameterType="int">
+
+		select aid,atitle,`desc`,adate,author from db_article where type=0 and
+		pid=#{pid} order by adate DESC
+
+	</select>
+
+	<delete id="deleteByPid" parameterType="int">
+	 delete from db_article where pid=#{pid}
+	
+	</delete>
+
+
 
 </mapper>

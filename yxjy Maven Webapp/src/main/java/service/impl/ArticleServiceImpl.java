@@ -75,4 +75,16 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleMapper.findByType(i);
 	}
 
+	@Override
+	public List<Article> getClassByPid(int pid) {
+		return articleMapper.getClassByPid(pid);
+	}
+
+	@Override
+	public void deleteByPid(int pid) {
+		articleMapper.deleteByPid(pid);
+	}
+
+	
+
 }
